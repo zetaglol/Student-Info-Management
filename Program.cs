@@ -6,7 +6,7 @@ namespace Student_Info_Management
     {
         static void Main(string[] args) 
         {
-            List<string> name = new List<string>();
+            List<string> fullName = new List<string>();
             List<string> course = new List<string>();
             List<string> year = new List<string>();
             List<string> contactNo = new List<string>();
@@ -31,34 +31,37 @@ namespace Student_Info_Management
                 switch (choice)
                 {
                     case 1:
-                        if (name.Count == 0)
+                        if (fullName.Count == 0)
                         {
-                            Console.WriteLine("No records found.");
+                            Console.WriteLine("--------------------------------------");
+                            Console.WriteLine("No records found. Please make a new record.");
                         } 
                         else
                         {
-                            for (int i = 0; i < name.Count; i++)
+                            for (int i = 0; i < fullName.Count; i++)
                             {
-                                Console.WriteLine("\n--- Student {0} ---", i + 1);
-                                Console.WriteLine("Name: " + name[i]);
+                                Console.WriteLine("--------------------------------------");
+                                Console.WriteLine("Student {0}:", i + 1);
+                                Console.WriteLine("Full Name: " + fullName[i]);
                                 Console.WriteLine("Course: " + course[i]);
                                 Console.WriteLine("Year: " + year[i]);
                                 Console.WriteLine("Contact No.: " + contactNo[i]);
                                 Console.WriteLine("Email: " + email[i]);
-                                Console.WriteLine("Address: " + address[i]);
+                                Console.WriteLine("Full Address: " + address[i]);
                                 Console.WriteLine("Date of Birth: " + dateOfBirth[i]);
                             }
                         }
                         break;
 
                     case 2:
-                        Console.Write("Name: ");
-                        name.Add(Console.ReadLine());
+                        Console.WriteLine("--------------------------------------");
+                        Console.Write("Full Name (Surname, First Name M.I.): ");
+                        fullName.Add(Console.ReadLine());
 
-                        Console.Write("Course: ");
+                        Console.Write("Course (e.g. BSIT): ");
                         course.Add(Console.ReadLine());
 
-                        Console.Write("Year: ");
+                        Console.Write("Year (e.g. 1): ");
                         year.Add(Console.ReadLine());
 
                         Console.Write("Contact No.: ");
@@ -67,18 +70,85 @@ namespace Student_Info_Management
                         Console.Write("Email: ");
                         email.Add(Console.ReadLine());
 
-                        Console.Write("Address: ");
+                        Console.Write("Full Address: ");
                         address.Add(Console.ReadLine());
 
                         Console.Write("Date of Birth: ");
                         dateOfBirth.Add(Console.ReadLine());
 
-                        Console.WriteLine("Student added successfully!");
+                        Console.WriteLine("\nStudent added successfully!");
+                        break;
+
+                    case 3:
+                        Console.WriteLine("--------------------------------------");
+                        Console.Write("Enter student number to update: ");
+                        int updateIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+                        if (updateIndex >= 0 && updateIndex < fullName.Count)
+                        {
+                            Console.Write("Full Name (Surname, First Name M.I.): ");
+                            fullName[updateIndex] = Console.ReadLine();
+
+                            Console.Write("Course (e.g. BSIT): ");
+                            course[updateIndex] = Console.ReadLine();
+
+                            Console.Write("Year (e.g. 1): ");
+                            year[updateIndex] = Console.ReadLine();
+
+                            Console.Write("Contact No.: ");
+                            contactNo[updateIndex] = Console.ReadLine();
+
+                            Console.Write("Email: ");
+                            email[updateIndex] = Console.ReadLine();
+
+                            Console.Write("Full Address: ");
+                            address[updateIndex] = Console.ReadLine();
+
+                            Console.Write("Date of Birth: ");
+                            dateOfBirth[updateIndex] = Console.ReadLine();
+
+                            Console.WriteLine("\nStudent updated successfully!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nInvalid student number.");
+                        }
+                        break;
+
+                    case 4:
+                        Console.WriteLine("--------------------------------------");
+                        Console.Write("Enter student number to delete: ");
+                        int deleteIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+                        if (deleteIndex >= 0 && deleteIndex < fullName.Count)
+                        {
+                            fullName.RemoveAt(deleteIndex);
+                            course.RemoveAt(deleteIndex);
+                            year.RemoveAt(deleteIndex);
+                            contactNo.RemoveAt(deleteIndex);
+                            email.RemoveAt(deleteIndex);
+                            address.RemoveAt(deleteIndex);
+                            dateOfBirth.RemoveAt(deleteIndex);
+
+                            Console.WriteLine("\nStudent deleted successfully!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nInvalid student number.");
+                        }
+                        break;
+
+                    case 5:
+                        Console.WriteLine("--------------------------------------");
+                        Console.WriteLine("Exiting the program...");
+                        break;
+
+                    default:
+                        Console.WriteLine("--------------------------------------");
+                        Console.WriteLine("Invalid choice. Please try again.");
                         break;
                 }
-
-
-            }
+            } while (choice != 5);
 
         }
     }
