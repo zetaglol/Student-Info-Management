@@ -6,6 +6,7 @@ namespace Student_Info_Management
     {
         static void Main(string[] args) 
         {
+            List<string> studentID = new List<string>();
             List<string> fullName = new List<string>();
             List<string> course = new List<string>();
             List<string> year = new List<string>();
@@ -42,6 +43,7 @@ namespace Student_Info_Management
                             {
                                 Console.WriteLine("--------------------------------------");
                                 Console.WriteLine("Student {0}:", i + 1);
+                                Console.WriteLine("Student ID: " + studentID[i]);
                                 Console.WriteLine("Full Name: " + fullName[i]);
                                 Console.WriteLine("Course: " + course[i]);
                                 Console.WriteLine("Year: " + year[i]);
@@ -55,6 +57,9 @@ namespace Student_Info_Management
 
                     case 2:
                         Console.WriteLine("--------------------------------------");
+                        Console.Write("Student ID: ");
+                        studentID.Add(Console.ReadLine());
+
                         Console.Write("Full Name (Surname, First Name M.I.): ");
                         fullName.Add(Console.ReadLine());
 
@@ -86,6 +91,9 @@ namespace Student_Info_Management
 
                         if (updateIndex >= 0 && updateIndex < fullName.Count)
                         {
+                            Console.Write("Student ID: ");
+                            studentID[updateIndex] = Console.ReadLine();
+
                             Console.Write("Full Name (Surname, First Name M.I.): ");
                             fullName[updateIndex] = Console.ReadLine();
 
@@ -122,6 +130,7 @@ namespace Student_Info_Management
 
                         if (deleteIndex >= 0 && deleteIndex < fullName.Count)
                         {
+                            studentID.RemoveAt(deleteIndex);
                             fullName.RemoveAt(deleteIndex);
                             course.RemoveAt(deleteIndex);
                             year.RemoveAt(deleteIndex);
